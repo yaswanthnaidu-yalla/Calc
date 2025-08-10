@@ -76,7 +76,7 @@ def key_press(event):
 
 # ----------------- GUI Setup -----------------
 window = tk.Tk()
-window.title("Final Calculator")
+window.title("Personal Calc")
 window.geometry("360x480")
 window.minsize(300, 420)
 window.configure(bg="#121212")
@@ -92,7 +92,7 @@ for j in range(4):          # 4 columns
 # Entry (display)
 entry = tk.Entry(
     window, textvariable=equation, font=('Segoe UI', 28, 'bold'),
-    bd=0, bg="#1e1e1e", fg="#ffffff", justify="right", insertbackground="white"
+    bd=0, bg="#f4f2f2", fg="#000000", justify="right", insertbackground="white"
 )
 entry.grid(row=0, column=0, columnspan=4, sticky="nsew", padx=10, pady=10)
 
@@ -113,10 +113,10 @@ for (text, row, col) in buttons:
         cmd = equalpress
     elif text in "+-*/":
         bg_color = "#8212f3"
-        fg_color = "#111111"
+        fg_color = "#FFFFFF"
         cmd = lambda t=text: press(t)
     else:
-        bg_color = "#2b2b2b"
+        bg_color = "#313131"
         fg_color = "#ffffff"
         cmd = lambda t=text: press(t)
 
@@ -129,11 +129,11 @@ for (text, row, col) in buttons:
 
 # Wide Clear and Backspace buttons in last row
 tk.Button(window, text="C", command=clear,
-          font=('Segoe UI', 16, 'bold'), bd=0, bg="#e74c3c", fg="white")\
+          font=('Segoe UI', 16, 'bold'), bd=0, bg="#e73ce1", fg="white")\
     .grid(row=5, column=0, columnspan=2, sticky="nsew", padx=6, pady=6)
 
 tk.Button(window, text="⌫", command=backspace,
-          font=('Segoe UI', 16, 'bold'), bd=0, bg="#2980b9", fg="white")\
+          font=('Segoe UI', 16, 'bold'), bd=0, bg="#600293", fg="white")\
     .grid(row=5, column=2, columnspan=2, sticky="nsew", padx=6, pady=6)
 
 # Keyboard bindings
