@@ -10,14 +10,11 @@ def press(num):
 
 def evaluate_expression(expr):
     """    Evaluate a numeric expression string safely. """
-   
-    # Evaluate and return string result
-    # Keep floats trimmed (remove trailing .0)
     result = eval(expr)
     if isinstance(result, float):
-        # Avoid long float representations
+        
         result = round(result, 10)
-        # Remove trailing zeros and possible trailing dot
+        
         s = ('%f' % result).rstrip('0').rstrip('.')
         return s if s != '' else '0'
     return str(result)
@@ -26,21 +23,21 @@ def equalpress():
     """Validate and evaluate the expression, with specific error handling."""
     global expression
     try:
-        # Allow only specific characters to reduce risk
+        
         if expression.strip() == "":
             return
         allowed = set("0123456789+-*/(). ")
         if not all(ch in allowed for ch in expression):
             raise ValueError("Invalid character")
 
-        # Prevent expressions that start/end with operators (simple guard)
+        
         expr_stripped = expression.strip()
         if expr_stripped[0] in "+*/" or expr_stripped[-1] in "+-*/":
             raise SyntaxError("Incomplete expression")
 
         total = evaluate_expression(expression)
         equation.set(total)
-        expression = total  # allow chaining
+        expression = total  
     except ZeroDivisionError:
         equation.set("Cannot divide by 0")
         expression = ""
@@ -84,9 +81,9 @@ window.configure(bg="#121212")
 expression = ""
 equation = tk.StringVar()
 
-for i in range(6):          # 0..5 rows (0 = display, 1-4 = buttons, 5 = wide controls)
+for i in range(6):          
     window.grid_rowconfigure(i, weight=1, uniform="row")
-for j in range(4):          # 4 columns
+for j in range(4):         
     window.grid_columnconfigure(j, weight=1, uniform="col")
 
 # Entry (display)
@@ -106,7 +103,7 @@ buttons = [
 
 # Create buttons
 for (text, row, col) in buttons:
-    # Color design: operators in orange, equals in green-ish, others dark
+    
     if text == "=":
         bg_color = "#7c27ae"
         fg_color = "#ffffff"
@@ -127,7 +124,7 @@ for (text, row, col) in buttons:
     )
     btn.grid(row=row, column=col, sticky="nsew", padx=6, pady=6)
 
-# Wide Clear and Backspace buttons in last row
+
 tk.Button(window, text="C", command=clear,
           font=('Segoe UI', 16, 'bold'), bd=0, bg="#e73ce1", fg="white")\
     .grid(row=5, column=0, columnspan=2, sticky="nsew", padx=6, pady=6)
